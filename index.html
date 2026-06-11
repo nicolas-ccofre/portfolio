@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Pixel — Diseño Web Profesional</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:wght@700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo">Studio<span>Pixel</span></a>
+    <ul class="nav__links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="btn btn--sm">Cotizar proyecto</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <div class="hero__blob hero__blob--1"></div>
+      <div class="hero__blob hero__blob--2"></div>
+      <div class="hero__grid"></div>
+    </div>
+    <div class="container hero__content">
+      <span class="badge badge--outline">Diseño web a medida · 2024</span>
+      <h1 class="hero__title">Hacemos que tu marca<br /><em>brille en internet</em></h1>
+      <p class="hero__sub">Creamos sitios web modernos, rápidos y que convierten visitantes en clientes. Cada proyecto es único, como tu negocio.</p>
+      <div class="hero__cta">
+        <a href="#catalogo" class="btn btn--lg">Ver catálogo</a>
+        <a href="#nosotros" class="btn btn--ghost btn--lg">Conocernos</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat"><span class="stat__num">+80</span><span class="stat__label">proyectos</span></div>
+        <div class="stat__divider"></div>
+        <div class="stat"><span class="stat__num">5★</span><span class="stat__label">valoración</span></div>
+        <div class="stat__divider"></div>
+        <div class="stat"><span class="stat__num">48h</span><span class="stat__label">respuesta</span></div>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <div class="hero__scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="section__header">
+        <span class="badge">El equipo</span>
+        <h2>Dos diseñadores,<br />una visión</h2>
+        <p>Combinamos creatividad y código para entregar experiencias digitales que impactan.</p>
+      </div>
+      <div class="team">
+        <article class="team__card">
+          <div class="team__avatar team__avatar--a">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" fill="url(#grad1)"/>
+              <circle cx="40" cy="32" r="13" fill="white" fill-opacity="0.9"/>
+              <ellipse cx="40" cy="68" rx="22" ry="15" fill="white" fill-opacity="0.9"/>
+              <defs>
+                <linearGradient id="grad1" x1="0" y1="0" x2="80" y2="80">
+                  <stop offset="0%" stop-color="#6366f1"/>
+                  <stop offset="100%" stop-color="#8b5cf6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3>Alejandro Rivera</h3>
+          <span class="team__role">UI/UX Designer & Frontend</span>
+          <p>5 años diseñando interfaces que enamoran. Especializado en branding digital, animaciones y experiencias interactivas de alto impacto.</p>
+          <ul class="team__skills">
+            <li>Figma</li><li>React</li><li>Motion Design</li><li>Branding</li>
+          </ul>
+        </article>
+        <article class="team__card">
+          <div class="team__avatar team__avatar--b">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" fill="url(#grad2)"/>
+              <circle cx="40" cy="32" r="13" fill="white" fill-opacity="0.9"/>
+              <ellipse cx="40" cy="68" rx="22" ry="15" fill="white" fill-opacity="0.9"/>
+              <defs>
+                <linearGradient id="grad2" x1="0" y1="0" x2="80" y2="80">
+                  <stop offset="0%" stop-color="#f472b6"/>
+                  <stop offset="100%" stop-color="#fb923c"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h3>María Torres</h3>
+          <span class="team__role">Web Developer & SEO</span>
+          <p>Desarrolladora full-stack con obsesión por el rendimiento. Cada sitio que construye carga en menos de 2 segundos y escala a la primera página de Google.</p>
+          <ul class="team__skills">
+            <li>Next.js</li><li>WordPress</li><li>SEO</li><li>E-commerce</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOGO -->
+  <section class="section section--dark" id="catalogo">
+    <div class="container">
+      <div class="section__header section__header--light">
+        <span class="badge badge--light">Catálogo</span>
+        <h2>Diseños que venden</h2>
+        <p>Explora nuestros templates y proyectos reales. Cada uno adaptable a tu negocio.</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="restaurante">Restaurante</button>
+        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+        <button class="filter-btn" data-filter="agencia">Agencia</button>
+        <button class="filter-btn" data-filter="landing">Landing Page</button>
+      </div>
+
+      <div class="catalog" id="catalog">
+
+        <article class="catalog__item" data-category="restaurante">
+          <a href="examples/restaurante/index.html" target="_blank" class="catalog__preview">
+            <div class="catalog__mockup catalog__mockup--restaurante">
+              <div class="mock-nav"></div>
+              <div class="mock-hero mock-hero--dark">
+                <div class="mock-title"></div>
+                <div class="mock-sub"></div>
+                <div class="mock-btn"></div>
+              </div>
+              <div class="mock-grid">
+                <div class="mock-card"></div>
+                <div class="mock-card"></div>
+                <div class="mock-card"></div>
+              </div>
+            </div>
+            <div class="catalog__overlay">
+              <span class="btn btn--sm">Ver demo →</span>
+            </div>
+          </a>
+          <div class="catalog__info">
+            <span class="catalog__tag">Restaurante</span>
+            <h3>Sabores del Mar</h3>
+            <p>Sitio para restaurante con menú interactivo, reservaciones online y galería.</p>
+            <div class="catalog__meta">
+              <span class="catalog__tech">HTML · CSS · JS</span>
+              <a href="examples/restaurante/index.html" target="_blank" class="catalog__link">Ver demo →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="catalog__item" data-category="ecommerce">
+          <a href="examples/ecommerce/index.html" target="_blank" class="catalog__preview">
+            <div class="catalog__mockup catalog__mockup--ecommerce">
+              <div class="mock-nav mock-nav--light"></div>
+              <div class="mock-banner">
+                <div class="mock-badge"></div>
+                <div class="mock-title mock-title--sm"></div>
+              </div>
+              <div class="mock-products">
+                <div class="mock-product"></div>
+                <div class="mock-product"></div>
+                <div class="mock-product"></div>
+                <div class="mock-product"></div>
+              </div>
+            </div>
+            <div class="catalog__overlay">
+              <span class="btn btn--sm">Ver demo →</span>
+            </div>
+          </a>
+          <div class="catalog__info">
+            <span class="catalog__tag catalog__tag--pink">E-commerce</span>
+            <h3>Boutique Luna</h3>
+            <p>Tienda online con carrito, filtros de productos y checkout optimizado.</p>
+            <div class="catalog__meta">
+              <span class="catalog__tech">HTML · CSS · JS</span>
+              <a href="examples/ecommerce/index.html" target="_blank" class="catalog__link">Ver demo →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="catalog__item" data-category="agencia">
+          <a href="examples/agencia/index.html" target="_blank" class="catalog__preview">
+            <div class="catalog__mockup catalog__mockup--agencia">
+              <div class="mock-nav mock-nav--dark"></div>
+              <div class="mock-split">
+                <div class="mock-split__text">
+                  <div class="mock-title"></div>
+                  <div class="mock-sub"></div>
+                </div>
+                <div class="mock-split__img"></div>
+              </div>
+              <div class="mock-services">
+                <div class="mock-service"></div>
+                <div class="mock-service"></div>
+                <div class="mock-service"></div>
+              </div>
+            </div>
+            <div class="catalog__overlay">
+              <span class="btn btn--sm">Ver demo →</span>
+            </div>
+          </a>
+          <div class="catalog__info">
+            <span class="catalog__tag catalog__tag--green">Agencia</span>
+            <h3>Nova Agency</h3>
+            <p>Sitio corporativo para agencia creativa con portafolio animado y blog.</p>
+            <div class="catalog__meta">
+              <span class="catalog__tech">HTML · CSS · JS</span>
+              <a href="examples/agencia/index.html" target="_blank" class="catalog__link">Ver demo →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="catalog__item" data-category="landing">
+          <a href="examples/landing/index.html" target="_blank" class="catalog__preview">
+            <div class="catalog__mockup catalog__mockup--landing">
+              <div class="mock-hero mock-hero--gradient">
+                <div class="mock-headline"></div>
+                <div class="mock-headline mock-headline--sm"></div>
+                <div class="mock-btns">
+                  <div class="mock-btn mock-btn--solid"></div>
+                  <div class="mock-btn mock-btn--outline"></div>
+                </div>
+              </div>
+              <div class="mock-features">
+                <div class="mock-feature"></div>
+                <div class="mock-feature"></div>
+                <div class="mock-feature"></div>
+              </div>
+            </div>
+            <div class="catalog__overlay">
+              <span class="btn btn--sm">Ver demo →</span>
+            </div>
+          </a>
+          <div class="catalog__info">
+            <span class="catalog__tag catalog__tag--orange">Landing Page</span>
+            <h3>SaaS Launch</h3>
+            <p>Landing de alto impacto para producto digital con secciones de conversión.</p>
+            <div class="catalog__meta">
+              <span class="catalog__tech">HTML · CSS · JS</span>
+              <a href="examples/landing/index.html" target="_blank" class="catalog__link">Ver demo →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section class="section" id="precios">
+    <div class="container">
+      <div class="section__header">
+        <span class="badge">Precios</span>
+        <h2>Inversión transparente</h2>
+        <p>Sin sorpresas. Elige el plan que mejor se adapta a tu proyecto.</p>
+      </div>
+      <div class="pricing">
+        <article class="pricing__card">
+          <div class="pricing__header">
+            <h3>Esencial</h3>
+            <div class="pricing__price"><span>$</span>499<small>/único</small></div>
+          </div>
+          <ul class="pricing__features">
+            <li>✓ Hasta 5 páginas</li>
+            <li>✓ Diseño responsive</li>
+            <li>✓ Formulario de contacto</li>
+            <li>✓ SEO básico</li>
+            <li>✓ 1 revisión</li>
+            <li class="muted">✗ E-commerce</li>
+            <li class="muted">✗ CMS</li>
+          </ul>
+          <a href="#contacto" class="btn btn--outline btn--full">Cotizar</a>
+        </article>
+        <article class="pricing__card pricing__card--featured">
+          <div class="pricing__badge">Más popular</div>
+          <div class="pricing__header">
+            <h3>Profesional</h3>
+            <div class="pricing__price"><span>$</span>999<small>/único</small></div>
+          </div>
+          <ul class="pricing__features">
+            <li>✓ Hasta 12 páginas</li>
+            <li>✓ Diseño responsive + animaciones</li>
+            <li>✓ CMS (WordPress / Sanity)</li>
+            <li>✓ SEO avanzado</li>
+            <li>✓ 3 revisiones</li>
+            <li>✓ Integración de redes sociales</li>
+            <li class="muted">✗ E-commerce</li>
+          </ul>
+          <a href="#contacto" class="btn btn--full">Cotizar</a>
+        </article>
+        <article class="pricing__card">
+          <div class="pricing__header">
+            <h3>E-commerce</h3>
+            <div class="pricing__price"><span>$</span>1,799<small>/único</small></div>
+          </div>
+          <ul class="pricing__features">
+            <li>✓ Páginas ilimitadas</li>
+            <li>✓ Tienda online completa</li>
+            <li>✓ Pasarela de pagos</li>
+            <li>✓ Panel de administración</li>
+            <li>✓ SEO avanzado + Analytics</li>
+            <li>✓ Revisiones ilimitadas</li>
+            <li>✓ Soporte 3 meses</li>
+          </ul>
+          <a href="#contacto" class="btn btn--outline btn--full">Cotizar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section section--accent" id="contacto">
+    <div class="container">
+      <div class="contact">
+        <div class="contact__info">
+          <span class="badge badge--light">Contacto</span>
+          <h2>¿Listo para empezar?</h2>
+          <p>Cuéntanos tu proyecto y te respondemos en menos de 48 horas con una propuesta a medida.</p>
+          <div class="contact__channels">
+            <a href="mailto:hola@studiopixel.com" class="contact__channel">
+              <div class="contact__icon">✉</div>
+              <div>
+                <strong>Email</strong>
+                <span>hola@studiopixel.com</span>
+              </div>
+            </a>
+            <a href="#" class="contact__channel">
+              <div class="contact__icon">💬</div>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>+52 55 1234 5678</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <form class="contact__form" id="contactForm">
+          <div class="form__row">
+            <div class="form__group">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre" required />
+            </div>
+            <div class="form__group">
+              <label>Email</label>
+              <input type="email" placeholder="tu@email.com" required />
+            </div>
+          </div>
+          <div class="form__group">
+            <label>Tipo de proyecto</label>
+            <select>
+              <option value="">Selecciona una opción</option>
+              <option>Sitio web corporativo</option>
+              <option>Tienda online</option>
+              <option>Landing page</option>
+              <option>Rediseño de sitio existente</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label>Cuéntanos tu proyecto</label>
+            <textarea rows="4" placeholder="Describe tu idea, negocio, objetivos..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--light btn--full">Enviar mensaje →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#" class="nav__logo">Studio<span>Pixel</span></a>
+      <p>© 2024 StudioPixel · Diseño web profesional</p>
+      <div class="footer__links">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
