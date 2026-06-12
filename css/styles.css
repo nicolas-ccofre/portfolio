@@ -401,6 +401,7 @@ em { font-style: italic; color: var(--c-primary); }
 .catalog__mockup--landing { background: linear-gradient(160deg, #080516, #110e2a); }
 .catalog__mockup--corporativo { background: linear-gradient(160deg, #001a4a, #003da5); }
 .catalog__mockup--salud { background: linear-gradient(160deg, #0a3d4a, #0d7a8a); }
+.catalog__mockup--oncologia { background: linear-gradient(160deg, #0d1f33, #1a3a52); }
 
 .mock-nav {
   height: 8px;
@@ -458,6 +459,8 @@ em { font-style: italic; color: var(--c-primary); }
 .mock-service { height: 50px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); }
 .mock-service--blue { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); }
 .mock-service--teal { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); }
+.mock-service--navy { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); }
+.mock-split__img--navy { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
 
 .mock-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
 .mock-feature { height: 60px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); }
