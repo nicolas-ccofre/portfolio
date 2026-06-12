@@ -1,3 +1,14 @@
+// Seamless video loop — avoids the freeze/flash of the native loop attribute
+const heroVideo = document.getElementById('heroVideo');
+if (heroVideo) {
+  heroVideo.addEventListener('timeupdate', () => {
+    if (heroVideo.duration && heroVideo.currentTime >= heroVideo.duration - 0.18) {
+      heroVideo.currentTime = 0;
+      heroVideo.play();
+    }
+  });
+}
+
 // NAV scroll effect + back to top visibility
 const nav = document.getElementById('nav');
 const backToTop = document.getElementById('backToTop');
