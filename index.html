@@ -26,15 +26,21 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero__bg">
-      <div class="hero__watercolor"></div>
+      <div class="hero__video-wrap">
+        <video autoplay muted loop playsinline class="hero__video">
+          <source src="videos/video_hero.mov" type="video/mp4">
+          <source src="videos/video_hero.mov" type="video/quicktime">
+        </video>
+      </div>
+      <div class="hero__overlay"></div>
       <div class="hero__blob hero__blob--1"></div>
       <div class="hero__blob hero__blob--2"></div>
     </div>
     <div class="container hero__content">
-      <span class="badge badge--outline">Diseño web a medida · 2025</span>
-      <h1 class="hero__title">Hacemos que tu marca<br /><em>brille en internet</em></h1>
-      <p class="hero__sub">Creamos sitios web modernos, rápidos y que convierten visitantes en clientes. Cada proyecto es único, como tu negocio.</p>
-      <div class="hero__cta">
+      <span class="badge badge--outline hero__anim hero__anim--down">Diseño web a medida · 2025</span>
+      <h1 class="hero__title hero__anim hero__anim--left">Hacemos que tu marca<br /><em>brille en internet</em></h1>
+      <p class="hero__sub hero__anim hero__anim--right">Creamos sitios web modernos, rápidos y que convierten visitantes en clientes. Cada proyecto es único, como tu negocio.</p>
+      <div class="hero__cta hero__anim hero__anim--up">
         <a href="#catalogo" class="btn btn--lg">Ver catálogo</a>
         <a href="#nosotros" class="btn btn--ghost btn--lg">Conocernos</a>
       </div>
@@ -296,6 +302,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- Botón volver al inicio -->
+  <button class="back-to-top" id="backToTop" aria-label="Volver al inicio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
   <script src="js/main.js"></script>
 </body>

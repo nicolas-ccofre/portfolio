@@ -1,7 +1,14 @@
-// NAV scroll effect
+// NAV scroll effect + back to top visibility
 const nav = document.getElementById('nav');
+const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
+  backToTop.classList.toggle('visible', window.scrollY > 600);
+});
+
+// Back to top click
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // Mobile menu toggle
