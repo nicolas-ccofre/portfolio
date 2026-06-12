@@ -402,6 +402,7 @@ em { font-style: italic; color: var(--c-primary); }
 .catalog__mockup--corporativo { background: linear-gradient(160deg, #001a4a, #003da5); }
 .catalog__mockup--salud { background: linear-gradient(160deg, #0a3d4a, #0d7a8a); }
 .catalog__mockup--oncologia { background: linear-gradient(160deg, #0d1f33, #1a3a52); }
+.catalog__mockup--drcastillo { background: linear-gradient(160deg, #0c1f3a, #004e8c); }
 
 .mock-nav {
   height: 8px;
@@ -447,6 +448,7 @@ em { font-style: italic; color: var(--c-primary); }
 
 .mock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .mock-card { height: 60px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.05); }
+.mock-card--blue { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); }
 
 .mock-products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .mock-product { height: 80px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.05); }
