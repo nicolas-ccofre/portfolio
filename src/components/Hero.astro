@@ -1,0 +1,85 @@
+---
+// Hero editorial — tipografía a gran escala con video de apoyo.
+// El fondo lo aporta SiteBackground (fondo continuo de todo el sitio).
+---
+
+<section
+  id="top"
+  class="relative flex min-h-[100svh] flex-col justify-between overflow-hidden px-6 pb-10 pt-32 md:px-10 md:pt-40"
+>
+  <div class="mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center">
+    <p class="eyebrow mb-8 text-paper/55" data-hero-eyebrow>
+      Estudio de diseño web · Chile · 2025
+    </p>
+
+    <h1
+      class="display text-[clamp(2.6rem,8.5vw,10rem)] text-paper"
+      data-hero-title
+    >
+      <span class="block overflow-hidden"
+        ><span class="reveal-line block">Hacemos que</span></span
+      >
+      <span class="block overflow-hidden"
+        ><span class="reveal-line block">tu marca <em>brille</em></span></span
+      >
+      <span class="block overflow-hidden"
+        ><span class="reveal-line block">en internet.</span></span
+      >
+    </h1>
+
+    <div
+      class="mt-12 flex flex-col gap-8 md:mt-16 md:flex-row md:items-end md:justify-between"
+    >
+      <p
+        class="max-w-md text-lg leading-relaxed text-paper/70"
+        data-hero-sub
+      >
+        Creamos sitios web modernos, rápidos y que convierten visitantes en
+        clientes. Cada proyecto es único — como tu negocio.
+      </p>
+
+      <div class="flex items-center gap-4" data-hero-cta>
+        <a
+          href="#trabajo"
+          class="group inline-flex items-center gap-3 rounded-full bg-paper px-7 py-4 text-sm font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+        >
+          Ver trabajo
+          <span class="transition-transform duration-300 group-hover:translate-x-1"
+            >→</span
+          >
+        </a>
+        <a
+          href="#equipo"
+          class="link-underline text-sm font-medium text-paper"
+        >
+          Conocernos
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Franja de video como pie del hero -->
+  <div
+    class="relative mx-auto mt-10 h-[22vh] w-full max-w-[1600px] overflow-hidden rounded-2xl md:h-[26vh]"
+    data-hero-media
+  >
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      class="h-full w-full object-cover"
+    >
+      <source src="/videos/video_hero.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-ink/10"></div>
+    <div
+      class="absolute bottom-4 left-5 flex items-center gap-2 text-xs font-medium tracking-wide text-paper mix-blend-difference"
+    >
+      <span class="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-paper"
+      ></span>
+      Disponibles para nuevos proyectos
+    </div>
+  </div>
+</section>

@@ -1,0 +1,110 @@
+---
+/**
+ * Fondo continuo de todo el sitio (una sola capa, sin costuras).
+ * Arranca con el degradé exacto del hero (cálido oscuro → azul acero,
+ * anclado en unidades svh) y CONTINÚA sin corte hacia periwinkle → crema
+ * cálido en el resto de la página. Interpolado en OKLCH (con fallback sRGB)
+ * + grano anti-banding. Va detrás de todo y no afecta el layout.
+ *
+ * Como es una única capa que se desplaza con el contenido, la transición
+ * del hero a las secciones siguientes es perfectamente continua.
+ *
+ * Props:
+ *  - animated: deriva muy lenta de los stops (~25s), respeta prefers-reduced-motion.
+ */
+interface Props {
+  animated?: boolean;
+}
+const { animated = false } = Astro.props;
+---
+
+<div
+  class:list={["site-bg", { "site-bg--animated": animated }]}
+  aria-hidden="true"
+>
+</div>
+
+<style>
+  .site-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    isolation: isolate; /* aísla el mix-blend del grano al propio fondo */
+
+    /* Fallback sRGB. Parte del hero (0→120svh) con los stops exactos del
+       original; luego continúa sin corte a periwinkle → crema cálido. */
+    background-image: linear-gradient(
+      to bottom,
+      #1d0d05 0,
+      #191316 18svh,
+      #15192b 36svh,
+      #17223d 48svh,
+      #253454 60svh,
+      #35486d 72svh,
+      #455d88 84svh,
+      #536d98 96svh,
+      #617ba6 108svh,
+      #708ab3 120svh,
+      #8e97b4 168svh,
+      #bcbcc4 212svh,
+      #dcd8ce 256svh,
+      #ece5d9 300svh
+    );
+  }
+
+  /* Interpolación en OKLCH: transición cálido→frío→cálido suave, sin grises sucios */
+  @supports (background: linear-gradient(in oklch, red, blue)) {
+    .site-bg {
+      background-image: linear-gradient(
+        to bottom in oklch,
+        #1d0d05 0,
+        #191316 18svh,
+        #15192b 36svh,
+        #17223d 48svh,
+        #253454 60svh,
+        #35486d 72svh,
+        #455d88 84svh,
+        #536d98 96svh,
+        #617ba6 108svh,
+        #708ab3 120svh,
+        #8e97b4 168svh,
+        #bcbcc4 212svh,
+        #dcd8ce 256svh,
+        #ece5d9 300svh
+      );
+    }
+  }
+
+  /* Grano anti-banding: ruido SVG muy sutil, solo para romper las bandas. */
+  .site-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* Opcional: deriva muy lenta para dar “vida”. */
+  .site-bg--animated {
+    background-size: 100% 112%;
+    background-position: center top;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .site-bg--animated {
+      animation: site-bg-drift 25s ease-in-out infinite alternate;
+    }
+  }
+
+  @keyframes site-bg-drift {
+    from {
+      background-position: center top;
+    }
+    to {
+      background-position: center bottom;
+    }
+  }
+</style>

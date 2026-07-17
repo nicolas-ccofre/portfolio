@@ -1,0 +1,61 @@
+---
+const year = new Date().getFullYear();
+const links = [
+  { href: "#trabajo", label: "Trabajo" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#equipo", label: "Equipo" },
+  { href: "#contacto", label: "Contacto" },
+];
+---
+
+<footer class="bg-ink px-6 pb-10 pt-24 text-paper md:px-10 md:pt-32">
+  <div class="mx-auto max-w-[1600px]">
+    <a
+      href="#top"
+      class="display block text-[clamp(3rem,15vw,16rem)] leading-none tracking-tight"
+    >
+      Studio<em class="text-accent-soft">Pixel</em>
+    </a>
+
+    <div
+      class="mt-16 flex flex-col gap-8 border-t border-white/12 pt-10 md:flex-row md:items-center md:justify-between"
+    >
+      <p class="max-w-xs text-sm leading-relaxed text-paper/60">
+        Estudio de diseño web. Hacemos que tu marca brille en internet.
+      </p>
+
+      <nav class="flex flex-wrap gap-x-8 gap-y-3">
+        {
+          links.map((l) => (
+            <a
+              href={l.href}
+              class="link-underline text-sm font-medium text-paper/80 hover:text-paper"
+            >
+              {l.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex gap-6 text-sm text-paper/80">
+        <a
+          href="https://wa.me/56983308372"
+          target="_blank"
+          rel="noopener"
+          class="link-underline hover:text-paper">WhatsApp</a
+        >
+        <a
+          href="mailto:n.carrillocofr@gmail.com"
+          class="link-underline hover:text-paper">Email</a
+        >
+      </div>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col gap-2 text-xs text-paper/40 md:flex-row md:justify-between"
+    >
+      <span>© {year} StudioPixel · Diseño web profesional</span>
+      <span>Hecho con Astro · Chile</span>
+    </div>
+  </div>
+</footer>

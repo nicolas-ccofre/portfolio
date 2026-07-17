@@ -1,0 +1,50 @@
+[
+  {
+    "id": "clinica-roa",
+    "title": "Clínica Rōa",
+    "category": "Salud",
+    "categoryKey": "salud",
+    "year": "2024",
+    "description": "Sitio para clínica dental y medicina estética con servicios de implantología, ortodoncia y armonización facial.",
+    "tech": "HTML · CSS · JS",
+    "url": "https://clinicaroa.cl",
+    "image": "/img/clinica-roa.png",
+    "featured": true
+  },
+  {
+    "id": "oncologia-digestiva",
+    "title": "Oncología Digestiva",
+    "category": "Salud",
+    "categoryKey": "salud",
+    "year": "2024",
+    "description": "Sitio médico especializado para cirujano oncólogo digestivo con perfil profesional, patologías tratadas y agenda de citas.",
+    "tech": "HTML · CSS · JS",
+    "url": "https://oncologiadigestiva.cl",
+    "image": "/img/cirugia-oncologica.png",
+    "featured": true
+  },
+  {
+    "id": "jaime-castillo",
+    "title": "Dr. Jaime Castillo",
+    "category": "Salud",
+    "categoryKey": "salud",
+    "year": "2024",
+    "description": "Sitio para cirujano especialista en cirugía digestiva, bariátrica y hepatobiliar con perfil profesional y agenda online.",
+    "tech": "HTML · CSS · JS",
+    "url": "https://drjaimecastillo.cl",
+    "image": "/img/jaime-castillo.png",
+    "featured": false
+  },
+  {
+    "id": "con-fluencia",
+    "title": "Con-fluencia",
+    "category": "Landing Page",
+    "categoryKey": "landing",
+    "year": "2025",
+    "description": "Sitio para consultora de asuntos públicos, asesoría legislativa y comunicación estratégica.",
+    "tech": "HTML · CSS · JS",
+    "url": "https://con-fluencia.cl",
+    "image": "/img/con-fluencia.png",
+    "featured": true
+  }
+]

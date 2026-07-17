@@ -1,0 +1,179 @@
+---
+// Scroll suave (Lenis) + animaciones de entrada (GSAP ScrollTrigger)
+---
+
+<!-- Botón volver arriba -->
+<button
+  id="backToTop"
+  aria-label="Volver al inicio"
+  class="fixed bottom-6 right-6 z-40 flex h-12 w-12 translate-y-4 items-center justify-center rounded-full bg-ink text-paper opacity-0 shadow-lg transition-all duration-300 hover:-translate-y-1"
+>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<script>
+  import Lenis from "lenis";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  // -- Lenis smooth scroll -----------------------------------------------
+  let lenis: Lenis | null = null;
+  if (!prefersReduced) {
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis?.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Anchors -> scroll suave con Lenis
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target as HTMLElement, { offset: 0 });
+      else target.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  // -- Reveal del hero ----------------------------------------------------
+  const heroLines = gsap.utils.toArray<HTMLElement>(
+    "[data-hero-title] .reveal-line",
+  );
+  const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+  if (heroLines.length) {
+    tl.from(heroLines, {
+      yPercent: 110,
+      duration: 1.1,
+      stagger: 0.12,
+    });
+  }
+  tl.from(
+    "[data-hero-eyebrow]",
+    { opacity: 0, y: 20, duration: 0.8 },
+    0.1,
+  )
+    .from(
+      "[data-hero-sub]",
+      { opacity: 0, y: 20, duration: 0.8 },
+      "-=0.7",
+    )
+    .from(
+      "[data-hero-cta]",
+      { opacity: 0, y: 20, duration: 0.8 },
+      "-=0.7",
+    )
+    .from(
+      "[data-hero-media]",
+      { opacity: 0, y: 40, duration: 1, ease: "expo.out" },
+      "-=0.8",
+    );
+
+  // -- Reveal por scroll --------------------------------------------------
+  if (!prefersReduced) {
+    gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((block) => {
+      const items = block.querySelectorAll<HTMLElement>(".reveal-item");
+      const targets = items.length ? items : [block];
+      gsap.from(targets, {
+        opacity: 0,
+        y: 40,
+        duration: 0.9,
+        ease: "expo.out",
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: block,
+          start: "top 85%",
+        },
+      });
+    });
+  }
+
+  // -- Superficie del nav (claro sobre el hero oscuro → oscuro sobre claro) --
+  // El fondo continuo lo dibuja SiteBackground; aquí solo adaptamos el color
+  // del nav según la posición del scroll (no es animación, funciona siempre).
+  const navEl = document.getElementById("nav");
+  const root = document.documentElement;
+
+  let isDark = true;
+  const setSurface = (dark: boolean) => {
+    if (dark === isDark) return;
+    isDark = dark;
+    if (dark) {
+      root.style.setProperty("--nav-fg", "#f1eee6");
+      root.style.setProperty("--nav-btn-bg", "#f1eee6");
+      root.style.setProperty("--nav-btn-fg", "#17160f");
+      navEl?.classList.remove("nav--scrolled");
+    } else {
+      root.style.setProperty("--nav-fg", "#17160f");
+      root.style.setProperty("--nav-btn-bg", "#17160f");
+      root.style.setProperty("--nav-btn-fg", "#f1eee6");
+      navEl?.classList.add("nav--scrolled");
+    }
+  };
+
+  // Nav claro mientras el tope del viewport muestra el degradé oscuro del hero;
+  // luego pasa a oscuro con backdrop (legible sobre cualquier fondo claro).
+  const updateSurface = () =>
+    setSurface(window.scrollY < window.innerHeight * 0.72);
+  window.addEventListener("scroll", updateSurface, { passive: true });
+  updateSurface();
+
+  // -- Efecto "escritura": palabras que se iluminan con el scroll ----------
+  const inkColor =
+    getComputedStyle(document.documentElement)
+      .getPropertyValue("--color-ink")
+      .trim() || "#17160f";
+  gsap.utils.toArray<HTMLElement>("[data-words]").forEach((block) => {
+    const words = block.querySelectorAll<HTMLElement>(".word");
+    if (!words.length) return;
+    if (prefersReduced) {
+      words.forEach((w) => w.classList.add("is-lit"));
+      return;
+    }
+    gsap.to(words, {
+      color: inkColor,
+      ease: "none",
+      stagger: 0.5,
+      scrollTrigger: {
+        trigger: block,
+        start: "top 78%",
+        end: "bottom 58%",
+        scrub: true,
+      },
+    });
+  });
+
+  // -- Botón volver arriba ------------------------------------------------
+  const btt = document.getElementById("backToTop");
+  const toggleBtt = () => {
+    if (!btt) return;
+    const show = window.scrollY > window.innerHeight;
+    btt.classList.toggle("opacity-0", !show);
+    btt.classList.toggle("translate-y-4", !show);
+    btt.classList.toggle("pointer-events-none", !show);
+  };
+  window.addEventListener("scroll", toggleBtt, { passive: true });
+  toggleBtt();
+  btt?.addEventListener("click", () => {
+    if (lenis) lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Recalcular tras cargar fuentes/imágenes
+  window.addEventListener("load", () => ScrollTrigger.refresh());
+</script>

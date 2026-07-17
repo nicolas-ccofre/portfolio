@@ -1,0 +1,103 @@
+---
+const links = [
+  { href: "#trabajo", label: "Trabajo" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#equipo", label: "Equipo" },
+  { href: "#contacto", label: "Contacto" },
+];
+---
+
+<header
+  id="nav"
+  class="fixed inset-x-0 top-0 z-50 transition-colors duration-500"
+  data-nav
+>
+  <div
+    class="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10"
+  >
+    <a
+      href="#top"
+      class="display text-2xl leading-none tracking-tight text-[color:var(--nav-fg)] transition-colors duration-500"
+      aria-label="StudioPixel — inicio"
+    >
+      Studio<em class="text-accent">Pixel</em>
+    </a>
+
+    <nav class="hidden items-center gap-9 md:flex">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="link-underline text-sm font-medium tracking-tight text-[color:var(--nav-fg)] opacity-75 transition-colors duration-500 hover:opacity-100"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a
+        href="#contacto"
+        class="rounded-full bg-[var(--nav-btn-bg)] px-5 py-2.5 text-sm font-medium text-[color:var(--nav-btn-fg)] transition-all duration-500 hover:-translate-y-0.5"
+      >
+        Cotizar proyecto
+      </a>
+    </nav>
+
+    <button
+      id="navToggle"
+      class="flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+    >
+      <span class="block h-[2px] w-6 bg-[var(--nav-fg)] transition-transform"></span>
+      <span class="block h-[2px] w-6 bg-[var(--nav-fg)] transition-opacity"></span>
+      <span class="block h-[2px] w-6 bg-[var(--nav-fg)] transition-transform"></span>
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div
+    id="mobileMenu"
+    class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-100%] flex-col justify-center gap-2 bg-paper px-8 transition-transform duration-500 md:hidden"
+    data-ease
+  >
+    {
+      links.map((l) => (
+        <a
+          href={l.href}
+          class="display border-b border-line py-4 text-4xl"
+          data-mobile-link
+        >
+          {l.label}
+        </a>
+      ))
+    }
+    <a
+      href="#contacto"
+      class="mt-6 rounded-full bg-ink px-6 py-4 text-center text-base font-medium text-paper"
+      data-mobile-link
+    >
+      Cotizar proyecto
+    </a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("navToggle");
+  const menu = document.getElementById("mobileMenu");
+
+  // Menú móvil
+  let open = false;
+  const setMenu = (state: boolean) => {
+    open = state;
+    if (!menu || !toggle) return;
+    menu.style.transform = open ? "translateY(0)" : "translateY(-100%)";
+    menu.classList.toggle("pointer-events-none", !open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    document.documentElement.classList.toggle("overflow-hidden", open);
+  };
+  toggle?.addEventListener("click", () => setMenu(!open));
+  document
+    .querySelectorAll("[data-mobile-link]")
+    .forEach((a) => a.addEventListener("click", () => setMenu(false)));
+</script>

@@ -1,0 +1,144 @@
+---
+// CTA final + formulario
+---
+
+<section id="contacto" class="px-6 py-24 md:px-10 md:py-36">
+  <div class="mx-auto max-w-[1600px]">
+    <div class="mb-16 max-w-5xl" data-reveal>
+      <p class="eyebrow mb-6 text-muted reveal-item">Contacto</p>
+      <h2 class="display text-[clamp(2.6rem,9vw,9rem)] reveal-item">
+        Hagamos algo<br /><em>que brille.</em>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20">
+      <!-- Canales -->
+      <div class="flex flex-col gap-6" data-reveal>
+        <p class="max-w-md text-lg leading-relaxed text-ink-soft reveal-item">
+          Cuéntanos tu proyecto y te respondemos en menos de 48 horas con una
+          propuesta a medida.
+        </p>
+
+        <a
+          href="mailto:n.carrillocofr@gmail.com"
+          class="group flex items-center justify-between border-t border-line py-6 reveal-item"
+        >
+          <div>
+            <span class="mb-1 block text-xs uppercase tracking-wider text-muted"
+              >Email</span
+            >
+            <span class="display text-xl md:text-2xl">n.carrillocofr@gmail.com</span
+            >
+          </div>
+          <span class="text-2xl transition-transform duration-300 group-hover:translate-x-1"
+            >→</span
+          >
+        </a>
+
+        <a
+          href="https://wa.me/56983308372"
+          target="_blank"
+          rel="noopener"
+          class="group flex items-center justify-between border-t border-line py-6 reveal-item"
+        >
+          <div>
+            <span class="mb-1 block text-xs uppercase tracking-wider text-muted"
+              >WhatsApp</span
+            >
+            <span class="display text-xl md:text-2xl">+56 9 8330 8372</span>
+          </div>
+          <span class="text-2xl transition-transform duration-300 group-hover:translate-x-1"
+            >→</span
+          >
+        </a>
+      </div>
+
+      <!-- Formulario -->
+      <form class="flex flex-col gap-5" id="contactForm" data-reveal novalidate>
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div class="reveal-item">
+            <label for="name" class="mb-2 block text-sm font-medium">Nombre</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              placeholder="Tu nombre"
+              class="w-full rounded-xl border border-line bg-transparent px-4 py-3 text-base outline-none transition-colors focus:border-ink"
+            />
+          </div>
+          <div class="reveal-item">
+            <label for="email" class="mb-2 block text-sm font-medium">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="tu@email.com"
+              class="w-full rounded-xl border border-line bg-transparent px-4 py-3 text-base outline-none transition-colors focus:border-ink"
+            />
+          </div>
+        </div>
+        <div class="reveal-item">
+          <label for="type" class="mb-2 block text-sm font-medium"
+            >Tipo de proyecto</label
+          >
+          <select
+            id="type"
+            name="type"
+            class="w-full rounded-xl border border-line bg-transparent px-4 py-3 text-base outline-none transition-colors focus:border-ink"
+          >
+            <option value="">Selecciona una opción</option>
+            <option>Sitio web corporativo</option>
+            <option>Tienda online</option>
+            <option>Landing page</option>
+            <option>Rediseño de sitio existente</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="reveal-item">
+          <label for="message" class="mb-2 block text-sm font-medium"
+            >Cuéntanos tu proyecto</label
+          >
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Describe tu idea, negocio, objetivos..."
+            class="w-full resize-none rounded-xl border border-line bg-transparent px-4 py-3 text-base outline-none transition-colors focus:border-ink"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 text-sm font-medium text-paper transition-transform duration-300 hover:-translate-y-0.5 reveal-item"
+        >
+          Enviar mensaje →
+        </button>
+        <p
+          id="formStatus"
+          class="hidden text-sm text-accent"
+          role="status"
+          aria-live="polite"
+        >
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("contactForm") as HTMLFormElement | null;
+  const status = document.getElementById("formStatus");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (status) {
+      status.textContent = "¡Gracias! Te responderemos dentro de 48 horas.";
+      status.classList.remove("hidden");
+    }
+    form.reset();
+  });
+</script>

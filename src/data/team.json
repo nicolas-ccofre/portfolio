@@ -1,0 +1,18 @@
+[
+  {
+    "id": "alvaro",
+    "name": "Álvaro Flores",
+    "role": "UI/UX Designer & Web Developer",
+    "bio": "Transforma la identidad de tu marca en una experiencia visual que genera confianza desde el primer clic. Diseña cada pantalla pensando en tus clientes: que encuentren lo que buscan, que sientan que están en el lugar correcto y que quieran volver.",
+    "skills": ["UI/UX", "Figma", "Tailwind CSS", "React", "JavaScript"],
+    "accent": "#5257e6"
+  },
+  {
+    "id": "nicolas",
+    "name": "Nicolás Carrillo",
+    "role": "Web Developer & UI/UX Designer",
+    "bio": "Construye la base técnica que hace que tu sitio cargue rápido, aparezca en Google y esté disponible siempre. Un buen desarrollo es silencioso — simplemente funciona, y esa tranquilidad se nota en cada visita de tus clientes.",
+    "skills": ["JavaScript", "Python", "WordPress", "React", "Tailwind CSS"],
+    "accent": "#e6725c"
+  }
+]
