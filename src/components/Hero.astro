@@ -1,6 +1,12 @@
 ---
 // Hero editorial — tipografía a gran escala con video de apoyo.
 // El fondo lo aporta SiteBackground (fondo continuo de todo el sitio).
+// Titular con efecto "escritura": las letras se encienden una a una.
+const titleLines = [
+  [{ t: "Hacemos" }, { t: "que" }],
+  [{ t: "tu" }, { t: "marca" }, { t: "brille", em: true }],
+  [{ t: "en" }, { t: "internet." }],
+];
 ---
 
 <section
@@ -13,18 +19,25 @@
     </p>
 
     <h1
-      class="display text-[clamp(2.6rem,8.5vw,10rem)] text-paper"
+      class="display text-[clamp(2.25rem,6vw,4.5rem)] text-paper"
       data-hero-title
     >
-      <span class="block overflow-hidden"
-        ><span class="reveal-line block">Hacemos que</span></span
-      >
-      <span class="block overflow-hidden"
-        ><span class="reveal-line block">tu marca <em>brille</em></span></span
-      >
-      <span class="block overflow-hidden"
-        ><span class="reveal-line block">en internet.</span></span
-      >
+      {
+        titleLines.map((line) => (
+          <span class="block">
+            {line.map((w, i) => (
+              <>
+                <span class:list={["word-group", w.em && "is-em"]}>
+                  {w.t.split("").map((ch) => (
+                    <span class="char">{ch}</span>
+                  ))}
+                </span>
+                {i < line.length - 1 ? " " : ""}
+              </>
+            ))}
+          </span>
+        ))
+      }
     </h1>
 
     <div

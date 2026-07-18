@@ -1,7 +1,6 @@
 ---
 const links = [
   { href: "#trabajo", label: "Trabajo" },
-  { href: "#proceso", label: "Proceso" },
   { href: "#equipo", label: "Equipo" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -53,33 +52,34 @@ const links = [
       <span class="block h-[2px] w-6 bg-[var(--nav-fg)] transition-transform"></span>
     </button>
   </div>
-
-  <!-- Menú móvil -->
-  <div
-    id="mobileMenu"
-    class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-100%] flex-col justify-center gap-2 bg-paper px-8 transition-transform duration-500 md:hidden"
-    data-ease
-  >
-    {
-      links.map((l) => (
-        <a
-          href={l.href}
-          class="display border-b border-line py-4 text-4xl"
-          data-mobile-link
-        >
-          {l.label}
-        </a>
-      ))
-    }
-    <a
-      href="#contacto"
-      class="mt-6 rounded-full bg-ink px-6 py-4 text-center text-base font-medium text-paper"
-      data-mobile-link
-    >
-      Cotizar proyecto
-    </a>
-  </div>
 </header>
+
+<!-- Menú móvil (fuera del header para que el hide-on-scroll del header,
+     que usa transform, no afecte su posición fixed) -->
+<div
+  id="mobileMenu"
+  class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-100%] flex-col justify-center gap-2 bg-paper px-8 transition-transform duration-500 md:hidden"
+  data-ease
+>
+  {
+    links.map((l) => (
+      <a
+        href={l.href}
+        class="display border-b border-line py-4 text-4xl"
+        data-mobile-link
+      >
+        {l.label}
+      </a>
+    ))
+  }
+  <a
+    href="#contacto"
+    class="mt-6 rounded-full bg-ink px-6 py-4 text-center text-base font-medium text-paper"
+    data-mobile-link
+  >
+    Cotizar proyecto
+  </a>
+</div>
 
 <script>
   const toggle = document.getElementById("navToggle");
@@ -90,7 +90,9 @@ const links = [
   const setMenu = (state: boolean) => {
     open = state;
     if (!menu || !toggle) return;
-    menu.style.transform = open ? "translateY(0)" : "translateY(-100%)";
+    // Tailwind v4 mueve el menú con la propiedad `translate`, así que la
+    // controlamos por esa misma propiedad (no `transform`).
+    menu.style.translate = open ? "0 0" : "0 -100%";
     menu.classList.toggle("pointer-events-none", !open);
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");

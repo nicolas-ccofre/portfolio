@@ -51,37 +51,38 @@
     });
   });
 
-  // -- Reveal del hero ----------------------------------------------------
-  const heroLines = gsap.utils.toArray<HTMLElement>(
-    "[data-hero-title] .reveal-line",
-  );
+  // -- Reveal del hero: efecto "escritura" letra por letra -----------------
+  // Las letras del titular se encienden una a una (tenue → papel). Como el hero
+  // se ve al cargar (sin scroll previo), lo disparamos al entrar con un stagger.
+  const paperColor =
+    getComputedStyle(document.documentElement)
+      .getPropertyValue("--color-paper")
+      .trim() || "#f1eee6";
+  const heroChars = gsap.utils.toArray<HTMLElement>("[data-hero-title] .char");
+
   const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-  if (heroLines.length) {
-    tl.from(heroLines, {
-      yPercent: 110,
-      duration: 1.1,
-      stagger: 0.12,
-    });
+  tl.from("[data-hero-eyebrow]", { opacity: 0, y: 20, duration: 0.9 });
+
+  if (heroChars.length) {
+    if (prefersReduced) {
+      heroChars.forEach((c) => c.classList.add("is-lit"));
+    } else {
+      tl.to(
+        heroChars,
+        { color: paperColor, duration: 0.45, ease: "none", stagger: 0.035 },
+        "-=0.4",
+      );
+    }
   }
-  tl.from(
-    "[data-hero-eyebrow]",
-    { opacity: 0, y: 20, duration: 0.8 },
-    0.1,
-  )
-    .from(
-      "[data-hero-sub]",
-      { opacity: 0, y: 20, duration: 0.8 },
-      "-=0.7",
-    )
-    .from(
-      "[data-hero-cta]",
-      { opacity: 0, y: 20, duration: 0.8 },
-      "-=0.7",
-    )
+
+  // El resto del hero entra DESPUÉS de que el titular termine de encenderse,
+  // con calma y bien espaciado (nada de aparecer de golpe al terminar).
+  tl.from("[data-hero-sub]", { opacity: 0, y: 24, duration: 1 }, "+=0.35")
+    .from("[data-hero-cta]", { opacity: 0, y: 24, duration: 1 }, "-=0.55")
     .from(
       "[data-hero-media]",
-      { opacity: 0, y: 40, duration: 1, ease: "expo.out" },
-      "-=0.8",
+      { opacity: 0, y: 40, duration: 1.2, ease: "expo.out" },
+      "-=0.7",
     );
 
   // -- Reveal por scroll --------------------------------------------------
@@ -132,6 +133,23 @@
     setSurface(window.scrollY < window.innerHeight * 0.72);
   window.addEventListener("scroll", updateSurface, { passive: true });
   updateSurface();
+
+  // -- Ocultar el header al bajar, mostrarlo al subir ----------------------
+  let lastY = window.scrollY;
+  const DIR_THRESHOLD = 6; // ignora micro-movimientos
+  const updateNavVisibility = () => {
+    const y = window.scrollY;
+    const delta = y - lastY;
+    if (y < 80) {
+      // Cerca del tope siempre visible.
+      navEl?.classList.remove("nav--hidden");
+    } else if (Math.abs(delta) > DIR_THRESHOLD) {
+      navEl?.classList.toggle("nav--hidden", delta > 0); // baja → oculta
+    }
+    lastY = y;
+  };
+  window.addEventListener("scroll", updateNavVisibility, { passive: true });
+  updateNavVisibility();
 
   // -- Efecto "escritura": palabras que se iluminan con el scroll ----------
   const inkColor =

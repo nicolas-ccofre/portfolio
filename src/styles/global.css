@@ -42,11 +42,33 @@ html {
 
 /* El fondo continuo del sitio vive en el componente SiteBackground. */
 
-/* Fondo del nav cuando la superficie es clara (scrolleado) */
-.nav--scrolled {
-  background: color-mix(in srgb, var(--color-paper) 82%, transparent);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+/* El header se oculta al bajar y reaparece al subir. */
+[data-nav] {
+  transition: transform 0.45s var(--ease-out-expo);
+  will-change: transform;
+}
+.nav--hidden {
+  transform: translateY(-100%);
+}
+
+/* Header al scrollear: SOLO vidrio esmerilado, sin color propio y sin borde.
+   El blur vive en un ::before enmascarado que se desvanece hacia abajo, así no
+   queda ninguna línea dura; el contenido del nav (logo/links) queda nítido. */
+[data-nav]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out-expo);
+}
+.nav--scrolled::before {
+  opacity: 1;
 }
 
 /* Lenis */
@@ -78,6 +100,22 @@ body {
 }
 .word.is-lit {
   color: var(--color-ink);
+}
+
+/* Titular del hero: efecto "escritura" letra por letra sobre fondo oscuro.
+   Las letras arrancan tenues (papel al 22%) y se encienden a papel pleno. */
+[data-hero-title] .word-group {
+  display: inline-block; /* evita cortes a mitad de palabra */
+}
+[data-hero-title] .word-group.is-em .char {
+  font-style: italic;
+  font-weight: 400;
+}
+[data-hero-title] .char {
+  color: color-mix(in srgb, var(--color-paper) 22%, transparent);
+}
+[data-hero-title] .char.is-lit {
+  color: var(--color-paper);
 }
 
 ::selection {

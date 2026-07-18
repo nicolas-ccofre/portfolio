@@ -32,46 +32,61 @@ const { animated = false } = Astro.props;
     pointer-events: none;
     isolation: isolate; /* aísla el mix-blend del grano al propio fondo */
 
-    /* Fallback sRGB. Parte del hero (0→120svh) con los stops exactos del
-       original; luego continúa sin corte a periwinkle → crema cálido. */
+    /* Fallback sRGB. Fondo continuo (una sola capa): la parte del hero pasa por
+       los stops OSCUROS canónicos de marca (#1d0d05 → #708ab3), y desde ahí
+       continúa sin corte por periwinkle → #cfdadd (cruce neutro) → blanco con
+       leve tinte celeste (#f0f5fc), con puntos intermedios para evitar bandas de
+       Mach. Se mantiene en ese blanco celeste hasta el pie de la página. */
     background-image: linear-gradient(
       to bottom,
       #1d0d05 0,
-      #191316 18svh,
-      #15192b 36svh,
-      #17223d 48svh,
-      #253454 60svh,
-      #35486d 72svh,
-      #455d88 84svh,
-      #536d98 96svh,
-      #617ba6 108svh,
-      #708ab3 120svh,
-      #8e97b4 168svh,
-      #bcbcc4 212svh,
-      #dcd8ce 256svh,
-      #ece5d9 300svh
+      #181317 19svh,
+      #15192b 35svh,
+      #17223d 47svh,
+      #293859 61svh,
+      #35486d 71svh,
+      #48618d 85svh,
+      #59739e 99svh,
+      #708ab3 110svh,
+      #8ea6c8 138svh,
+      #9fb5d3 162svh,
+      #b1c5de 186svh,
+      #c0cfdd 206svh,
+      #cfdadd 226svh,
+      #d8e2ea 250svh,
+      #e4edf4 276svh,
+      #edf3fa 302svh,
+      #f0f5fc 332svh,
+      #f0f5fc 800svh
     );
   }
 
-  /* Interpolación en OKLCH: transición cálido→frío→cálido suave, sin grises sucios */
-  @supports (background: linear-gradient(in oklch, red, blue)) {
+  /* Interpolación en OKLAB: línea recta en el espacio perceptual → transición
+     cálido→frío→cálido suave, sin desvío de matiz (evita el tinte malva que
+     produce OKLCH al pasar entre colores casi neutros). */
+  @supports (background: linear-gradient(in oklab, red, blue)) {
     .site-bg {
       background-image: linear-gradient(
-        to bottom in oklch,
+        to bottom in oklab,
         #1d0d05 0,
-        #191316 18svh,
-        #15192b 36svh,
-        #17223d 48svh,
-        #253454 60svh,
-        #35486d 72svh,
-        #455d88 84svh,
-        #536d98 96svh,
-        #617ba6 108svh,
-        #708ab3 120svh,
-        #8e97b4 168svh,
-        #bcbcc4 212svh,
-        #dcd8ce 256svh,
-        #ece5d9 300svh
+        #181317 19svh,
+        #15192b 35svh,
+        #17223d 47svh,
+        #293859 61svh,
+        #35486d 71svh,
+        #48618d 85svh,
+        #59739e 99svh,
+        #708ab3 110svh,
+        #8ea6c8 138svh,
+        #9fb5d3 162svh,
+        #b1c5de 186svh,
+        #c0cfdd 206svh,
+        #cfdadd 226svh,
+        #d8e2ea 250svh,
+        #e4edf4 276svh,
+        #edf3fa 302svh,
+        #f0f5fc 332svh,
+        #f0f5fc 800svh
       );
     }
   }
