@@ -14,7 +14,7 @@ export default function Hero() {
 
       <div className="relative z-[1] mx-auto max-w-[740px] px-6 pt-10 pb-20">
         <Badge variant="outline" className="mb-7 animate-hero-down opacity-0">
-          Diseño web a medida · 2025
+          Diseño web a medida
         </Badge>
         <h1 className="mb-6 animate-hero-left text-text opacity-0">
           Hacemos que tu marca

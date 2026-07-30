@@ -12,7 +12,9 @@ export default function Footer() {
         <a href="#" className="font-display text-2xl font-black text-text">
           Studio<span className="text-primary">Pixel</span>
         </a>
-        <p className="text-[0.85rem] text-text-muted">© 2025 StudioPixel · Diseño web profesional</p>
+        <p className="text-[0.85rem] text-text-muted">
+          © {new Date().getFullYear()} StudioPixel · Diseño web profesional
+        </p>
         <div className="flex gap-6">
           {links.map((link) => (
             <a
