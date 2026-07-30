@@ -20,7 +20,7 @@ export const team: TeamMember[] = [
     id: "nicolas-carrillo",
     name: "Nicolás Carrillo",
     role: "Web Developer & UI/UX Designer",
-    bio: "Construye la base técnica que hace que tu sitio cargue rápido, aparezca en Google y esté disponible siempre. Un buen desarrollo es silencioso — simplemente funciona, y esa tranquilidad se nota en cada visita de tus clientes.",
+    bio: "Construye la base técnica que hace que tu sitio cargue rápido, aparezca en Google y esté disponible siempre. Un buen desarrollo es silencioso: simplemente funciona, y esa tranquilidad se nota en cada visita de tus clientes.",
     skills: ["JavaScript", "Python", "WordPress", "React", "Tailwind CSS"],
     avatarGradient: ["#f472b6", "#fb923c"],
   },

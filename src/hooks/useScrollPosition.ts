@@ -1,28 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 
 export interface ScrollPosition {
   isScrolled: boolean;
   showBackToTop: boolean;
+  navSentinelRef: RefObject<HTMLDivElement | null>;
+  backToTopSentinelRef: RefObject<HTMLDivElement | null>;
 }
 
-export function useScrollPosition(): ScrollPosition {
-  const [scrollY, setScrollY] = useState(0);
+function useCrossedSentinel(): [RefObject<HTMLDivElement | null>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
+  const [crossed, setCrossed] = useState(false);
 
   useEffect(() => {
-    let ticking = false;
+    const el = ref.current;
+    if (!el) return;
 
-    const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        setScrollY(window.scrollY);
-        ticking = false;
-      });
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setCrossed(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      },
+      { threshold: 0 }
+    );
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  return { isScrolled: scrollY > 40, showBackToTop: scrollY > 600 };
+  return [ref, crossed];
+}
+
+/** Tracks two document-position thresholds via IntersectionObserver sentinels
+ * instead of a raw scroll listener (avoids re-rendering on every scroll frame). */
+export function useScrollPosition(): ScrollPosition {
+  const [navSentinelRef, isScrolled] = useCrossedSentinel();
+  const [backToTopSentinelRef, showBackToTop] = useCrossedSentinel();
+
+  return { isScrolled, showBackToTop, navSentinelRef, backToTopSentinelRef };
 }

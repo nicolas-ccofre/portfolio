@@ -4,10 +4,10 @@ import Button from "../ui/Button";
 import CatalogMockupLanding from "./CatalogMockupLanding";
 
 const tagVariantClasses: Record<CatalogItem["tagVariant"], string> = {
-  teal: "border-[rgba(13,122,138,0.18)] bg-[rgba(13,122,138,0.07)] text-[#0a6878]",
-  blue: "border-[rgba(0,61,165,0.18)] bg-[rgba(0,61,165,0.07)] text-[#003da5]",
-  orange: "border-orange/22 bg-orange/9 text-orange",
-  green: "border-green/22 bg-green/9 text-[#3a6648]",
+  teal: "border-teal/20 bg-teal/8 text-teal",
+  blue: "border-primary/20 bg-primary/8 text-primary",
+  orange: "border-orange/20 bg-orange/8 text-orange",
+  green: "border-green/20 bg-green/8 text-green",
 };
 
 interface CatalogCardProps {

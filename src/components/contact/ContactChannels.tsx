@@ -1,14 +1,16 @@
+import { Envelope, WhatsappLogo } from "@phosphor-icons/react";
+
 const channels = [
   {
     href: "mailto:n.carrillocofr@gmail.com",
-    icon: "✉",
+    icon: Envelope,
     label: "Email",
     value: "n.carrillocofr@gmail.com",
     external: false,
   },
   {
     href: "https://wa.me/56983308372",
-    icon: "💬",
+    icon: WhatsappLogo,
     label: "WhatsApp",
     value: "+56 9 8330 8372",
     external: true,
@@ -26,7 +28,9 @@ export default function ContactChannels() {
           rel={channel.external ? "noreferrer" : undefined}
           className="flex items-center gap-4 rounded-field border border-[rgba(60,105,160,0.18)] bg-white/45 px-5 py-4 backdrop-blur-md transition-[250ms] hover:-translate-y-0.5 hover:bg-white/80"
         >
-          <div className="text-[1.4rem]">{channel.icon}</div>
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/8 text-primary">
+            <channel.icon size={20} weight="regular" />
+          </div>
           <div>
             <strong className="block text-[0.9rem] text-text">{channel.label}</strong>
             <span className="text-[0.85rem] text-text-muted">{channel.value}</span>

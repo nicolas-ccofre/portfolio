@@ -3,22 +3,23 @@
 @theme {
   --color-bg: #fafcff;
   --color-surface: #ffffff;
-  --color-border: rgba(60, 105, 160, 0.15);
-  --color-text: #1c2438;
-  --color-text-muted: #6878a0;
-  --color-primary: #4a7ab2;
-  --color-primary-light: #6e9ec8;
-  --color-accent: #7888c4;
-  --color-green: #5a8c7a;
-  --color-orange: #c87858;
+  --color-border: rgba(45, 84, 133, 0.15);
+  --color-text: #16203a;
+  --color-text-muted: #5c6c8a;
+  --color-primary: #2c5f96;
+  --color-primary-light: #4a7ab2;
+  --color-accent: #6f7fb8;
+  --color-teal: #157a82;
+  --color-green: #4f8572;
+  --color-orange: #c07249;
 
   --radius-card: 18px;
   --radius-field: 12px;
 
-  --shadow-brand: 0 4px 36px rgba(55, 100, 158, 0.12);
+  --shadow-brand: 0 4px 36px rgba(35, 72, 117, 0.14);
 
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Manrope Variable", "Manrope", system-ui, sans-serif;
+  --font-display: "Outfit Variable", "Outfit", system-ui, sans-serif;
 
   /* Old site is desktop-first with breakpoints at 900px/600px; Tailwind's
      sm:/md: are mobile-first, so we repoint them to the same pixel values
@@ -26,22 +27,11 @@
   --breakpoint-sm: 600px;
   --breakpoint-md: 900px;
 
-  --animate-bounce-arrow: bounce-arrow 2.4s ease-in-out infinite;
   --animate-fade-up: fade-up 0.4s ease forwards;
   --animate-hero-down: hero-down 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s both;
   --animate-hero-left: hero-left 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 0.45s both;
   --animate-hero-right: hero-right 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 0.75s both;
   --animate-hero-up: hero-up 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 1.05s both;
-}
-
-@keyframes bounce-arrow {
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(7px);
-  }
 }
 
 @keyframes fade-up {
@@ -103,27 +93,21 @@
 
   body {
     font-family: var(--font-sans);
+    font-weight: 450;
     color: var(--color-text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    background: linear-gradient(
-      180deg,
-      #fafcff 0%,
-      #f0f5fd 15%,
-      #e8f0fb 30%,
-      #dde8f8 48%,
-      #d5e2f6 63%,
-      #cddaf4 78%,
-      #d8e5f8 100%
-    );
+    background: linear-gradient(180deg, #fafcff 0%, #eef4fc 45%, #dfe9f8 100%);
     background-attachment: fixed;
   }
 
   h1,
   h2,
   h3 {
-    font-family: var(--font-serif);
-    line-height: 1.15;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
   h1 {
     font-size: clamp(2.4rem, 6vw, 4.5rem);
@@ -133,6 +117,7 @@
   }
   h3 {
     font-size: 1.3rem;
+    letter-spacing: -0.01em;
   }
 
   a {

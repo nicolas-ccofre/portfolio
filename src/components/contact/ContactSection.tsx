@@ -1,4 +1,3 @@
-import Badge from "../ui/Badge";
 import Reveal from "../ui/Reveal";
 import ContactChannels from "./ContactChannels";
 import ContactForm from "./ContactForm";
@@ -12,9 +11,6 @@ export default function ContactSection() {
       <div className="mx-auto max-w-[1160px] px-6">
         <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
           <Reveal>
-            <Badge variant="light" className="mb-5">
-              Contacto
-            </Badge>
             <h2 className="mb-4 text-text">¿Listo para empezar?</h2>
             <p className="mb-10 text-text-muted">
               Cuéntanos tu proyecto y te respondemos en menos de 48 horas con una propuesta a

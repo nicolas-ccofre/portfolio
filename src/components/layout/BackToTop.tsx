@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { ArrowUp } from "@phosphor-icons/react";
 
 interface BackToTopProps {
   visible: boolean;
@@ -14,17 +15,7 @@ export default function BackToTop({ visible }: BackToTopProps) {
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       )}
     >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-[21px] w-[21px]"
-      >
-        <polyline points="18 15 12 9 6 15" />
-      </svg>
+      <ArrowUp size={21} weight="regular" />
     </button>
   );
 }

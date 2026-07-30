@@ -43,7 +43,7 @@ export default function Button<T extends ElementType = "button">({
   return (
     <Component
       className={clsx(
-        "inline-flex cursor-pointer items-center gap-2 rounded-full font-semibold no-underline transition-all duration-[250ms] ease-out",
+        "inline-flex cursor-pointer items-center gap-2 rounded-full font-semibold no-underline transition-all duration-[250ms] ease-out active:scale-[0.98]",
         variantClasses[variant],
         sizeClasses[size],
         full && "w-full justify-center",

@@ -34,24 +34,6 @@ export default function Hero() {
           </Button>
         </div>
       </div>
-
-      <a
-        href="#catalogo"
-        aria-label="Ver catálogo"
-        className="absolute bottom-10 left-1/2 z-[1] flex h-[46px] w-[46px] animate-bounce-arrow items-center justify-center rounded-full border-[1.5px] border-primary/28 bg-white/55 text-primary backdrop-blur-md transition-[background,box-shadow,border-color] duration-[250ms] hover:border-primary hover:bg-white/92 hover:shadow-[0_4px_18px_rgba(74,122,178,0.25)] hover:[animation-play-state:paused]"
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-[22px] w-[22px]"
-        >
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
-      </a>
     </section>
   );
 }

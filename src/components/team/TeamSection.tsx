@@ -7,7 +7,6 @@ export default function TeamSection() {
     <section id="nosotros" className="py-16 sm:py-25">
       <div className="mx-auto max-w-[1160px] px-6">
         <SectionHeader
-          badge="El equipo"
           title={
             <>
               Dos personas,
@@ -15,7 +14,7 @@ export default function TeamSection() {
               una visión
             </>
           }
-          description="Tener una página web bien hecha no es un lujo — es la herramienta que te permite estar disponible las 24 horas, llegar a clientes que nunca te hubieran encontrado de otra forma y proyectar la confianza que tu negocio merece. Nosotros nos encargamos de todo el proceso para que tú solo tengas que enfocarte en crecer."
+          description="Tener una página web bien hecha no es un lujo. Es la herramienta que te permite estar disponible las 24 horas, llegar a clientes que nunca te hubieran encontrado de otra forma y proyectar la confianza que tu negocio merece. Nosotros nos encargamos de todo el proceso para que tú solo tengas que enfocarte en crecer."
         />
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {team.map((member) => (
