@@ -1,4 +1,5 @@
 import { useSeamlessVideoLoop } from "../../hooks/useSeamlessVideoLoop";
+import { asset } from "../../lib/asset";
 
 export default function HeroVideo() {
   const videoRef = useSeamlessVideoLoop();
@@ -13,7 +14,7 @@ export default function HeroVideo() {
         preload="auto"
         className="h-full w-full object-cover object-center"
       >
-        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src={asset("videos/hero.mp4")} type="video/mp4" />
       </video>
     </div>
   );

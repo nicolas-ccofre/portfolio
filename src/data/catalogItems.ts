@@ -1,3 +1,4 @@
+import { asset } from "../lib/asset";
 import type { CatalogItem } from "../types/catalog";
 
 export const catalogItems: CatalogItem[] = [
@@ -12,7 +13,7 @@ export const catalogItems: CatalogItem[] = [
     href: "https://clinicaroa.cl",
     linkLabel: "Ver sitio →",
     externalTarget: true,
-    image: { src: "/img/clinica-roa-banner.png", alt: "Clínica Rōa" },
+    image: { src: asset("img/clinica-roa-banner.png"), alt: "Clínica Rōa" },
   },
   {
     id: "oncologia-digestiva",
@@ -26,7 +27,7 @@ export const catalogItems: CatalogItem[] = [
     linkLabel: "Ver sitio →",
     externalTarget: true,
     image: {
-      src: "/img/oncologia-digestiva-banner.png",
+      src: asset("img/oncologia-digestiva-banner.png"),
       alt: "Oncología Digestiva",
     },
   },
@@ -41,7 +42,7 @@ export const catalogItems: CatalogItem[] = [
     href: "https://drjaimecastillo.cl",
     linkLabel: "Ver sitio →",
     externalTarget: true,
-    image: { src: "/img/jaime-castillo-banner.png", alt: "Dr. Jaime Castillo" },
+    image: { src: asset("img/jaime-castillo-banner.png"), alt: "Dr. Jaime Castillo" },
   },
   {
     id: "proximo-proyecto",
@@ -51,7 +52,7 @@ export const catalogItems: CatalogItem[] = [
       "Sitio corporativo con diseño moderno, identidad de marca y orientado a resultados.",
     tag: "Corporativo",
     tagVariant: "blue",
-    href: "/examples/landing/index.html",
+    href: asset("examples/landing/index.html"),
     linkLabel: "Ver demo →",
     externalTarget: true,
     mockup: "landing",
@@ -67,7 +68,7 @@ export const catalogItems: CatalogItem[] = [
     href: "https://con-fluencia.cl",
     linkLabel: "Ver sitio →",
     externalTarget: true,
-    image: { src: "/img/con-fluencia-banner.png", alt: "Con-fluencia" },
+    image: { src: asset("img/con-fluencia-banner.png"), alt: "Con-fluencia" },
   },
 ];
 
