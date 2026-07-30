@@ -1,8 +1,10 @@
 import clsx from "clsx";
+import { List, X } from "@phosphor-icons/react";
 import Button from "../ui/Button";
 import { useMobileNav } from "../../hooks/useMobileNav";
 
 const links = [
+  { href: "#servicios", label: "Servicios" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#catalogo", label: "Catálogo" },
   { href: "#contacto", label: "Contacto" },
@@ -22,7 +24,7 @@ export default function Nav({ isScrolled }: NavProps) {
         isScrolled && "bg-[rgba(248,251,255,0.92)] shadow-[0_1px_0_var(--color-border)] backdrop-blur-xl"
       )}
     >
-      <a href="#" className="mr-auto font-serif text-2xl font-black text-text">
+      <a href="#" className="mr-auto font-display text-2xl font-black text-text">
         Studio<span className="text-primary">Pixel</span>
       </a>
 
@@ -47,18 +49,18 @@ export default function Nav({ isScrolled }: NavProps) {
         ))}
       </ul>
 
-      <Button as="a" href="#contacto" size="sm" className="hidden md:inline-flex">
-        Cotizar proyecto
-      </Button>
+      <div className="hidden md:block">
+        <Button as="a" href="#contacto" size="sm">
+          Cotizar proyecto
+        </Button>
+      </div>
 
       <button
-        className="relative z-[110] flex flex-col gap-[5px] border-0 bg-transparent p-1 cursor-pointer md:hidden"
+        className="relative z-[110] flex items-center justify-center border-0 bg-transparent p-1 text-text cursor-pointer md:hidden"
         aria-label="Menú"
         onClick={toggle}
       >
-        <span className="block h-0.5 w-6 rounded-sm bg-text transition-[250ms]" />
-        <span className="block h-0.5 w-6 rounded-sm bg-text transition-[250ms]" />
-        <span className="block h-0.5 w-6 rounded-sm bg-text transition-[250ms]" />
+        {isOpen ? <X size={24} weight="regular" /> : <List size={24} weight="regular" />}
       </button>
     </nav>
   );
