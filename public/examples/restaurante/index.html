@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabores del Mar — Restaurante</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #fdf6ee;
+      --warm: #f5e9d5;
+      --brown: #5c3d2e;
+      --orange: #d4693a;
+      --dark: #1a0e08;
+      --text: #3d2c20;
+      --muted: #9c7b68;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(253,246,238,0.92); backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(92,61,46,0.1);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); }
+    .nav-links { display: flex; gap: 32px; font-size: 0.9rem; }
+    .nav-links a { color: var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      padding: 10px 24px; border-radius: 100px;
+      background: var(--orange); color: white;
+      font-size: 0.85rem; font-weight: 600;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--brown); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(26,14,8,0.55), rgba(26,14,8,0.55)),
+        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center; padding-top: 80px;
+    }
+    .hero-content { max-width: 620px; }
+    .hero-tag {
+      display: inline-block; padding: 6px 18px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.8);
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem);
+      color: white; line-height: 1.1; margin-bottom: 20px;
+    }
+    .hero h1 em { color: #f0c274; font-style: italic; }
+    .hero p { color: rgba(255,255,255,0.75); font-size: 1.05rem; margin-bottom: 36px; max-width: 480px; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 14px 32px; border-radius: 100px;
+      background: var(--orange); color: white;
+      font-weight: 600; font-size: 0.95rem;
+      transition: transform .2s, background .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); background: #c0562a; }
+    .btn-ghost {
+      padding: 14px 32px; border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.4); color: white;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background .2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+    /* FEATURES */
+    .features { padding: 80px 0; background: var(--warm); }
+    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+    .feature { text-align: center; padding: 36px 24px; background: white; border-radius: 16px; }
+    .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 8px; color: var(--brown); }
+    .feature p { font-size: 0.9rem; color: var(--muted); }
+
+    /* MENU */
+    .menu { padding: 100px 0; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-tag {
+      display: inline-block; padding: 5px 16px; border-radius: 100px;
+      background: rgba(212,105,58,0.1); color: var(--orange);
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--brown); margin-bottom: 12px; }
+    .section-header p { color: var(--muted); max-width: 480px; margin: 0 auto; }
+
+    .menu-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+    .tab {
+      padding: 8px 24px; border-radius: 100px; border: 1.5px solid rgba(92,61,46,0.2);
+      font-size: 0.85rem; font-weight: 500; color: var(--muted); cursor: pointer;
+      background: none; transition: .2s;
+    }
+    .tab.active { background: var(--brown); color: white; border-color: var(--brown); }
+    .tab:hover:not(.active) { border-color: var(--orange); color: var(--orange); }
+
+    .menu-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .menu-item {
+      display: flex; gap: 16px; padding: 20px;
+      background: white; border-radius: 14px; border: 1px solid rgba(92,61,46,0.08);
+      transition: box-shadow .2s;
+    }
+    .menu-item:hover { box-shadow: 0 4px 24px rgba(92,61,46,0.12); }
+    .menu-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; flex-shrink: 0; background: var(--warm); }
+    .menu-item-info { flex: 1; }
+    .menu-item-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; color: var(--brown); }
+    .menu-item-info p { font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; }
+    .menu-price { font-weight: 700; color: var(--orange); font-size: 1rem; }
+
+    /* GALLERY */
+    .gallery { padding: 80px 0; background: var(--dark); }
+    .gallery .section-header h2 { color: white; }
+    .gallery .section-header p { color: rgba(255,255,255,0.55); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: 16px;
+    }
+    .gallery-item {
+      border-radius: 12px; overflow: hidden;
+      background: #2d1a0e;
+    }
+    .gallery-item:first-child { grid-row: 1 / 3; grid-column: 1; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #2d1a0e, #4a2b15);
+    }
+
+    /* RESERVA */
+    .reserva { padding: 100px 0; }
+    .reserva-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .reserva-text h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--brown); margin-bottom: 16px; }
+    .reserva-text p { color: var(--muted); margin-bottom: 24px; }
+    .reserva-info { display: flex; flex-direction: column; gap: 14px; }
+    .reserva-info-item { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; }
+    .reserva-info-item span:first-child { font-size: 1.2rem; }
+
+    .reserva-form { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 4px 32px rgba(92,61,46,0.1); }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--brown); margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid rgba(92,61,46,0.15); border-radius: 10px;
+      font-family: inherit; font-size: 0.9rem; color: var(--text);
+      outline: none; transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--orange); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 48px 0 32px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: white; }
+    footer p { font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.85rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* BACK LINK */
+    .back-link {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      padding: 10px 20px; border-radius: 100px;
+      background: var(--brown); color: white;
+      font-size: 0.82rem; font-weight: 600;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: background .2s;
+    }
+    .back-link:hover { background: var(--orange); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .features-grid, .menu-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-row: auto; grid-column: auto; }
+      .reserva-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Sabores del Mar</div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#reserva">Reservar</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#reserva" class="nav-cta">Reservar mesa</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tag">Cocina mediterránea · Desde 1998</span>
+        <h1>Sabores que <em>cuentan historias</em></h1>
+        <p>Ingredientes frescos del mar en cada plato. Una experiencia gastronómica que conquista todos los sentidos.</p>
+        <div class="hero-btns">
+          <a href="#menu" class="btn-primary">Ver el menú</a>
+          <a href="#reserva" class="btn-ghost">Hacer reserva</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🦞</div>
+          <h3>Mariscos frescos</h3>
+          <p>Selección diaria del mercado local. Solo los mejores ingredientes llegan a tu mesa.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🍷</div>
+          <h3>Carta de vinos</h3>
+          <p>Más de 80 etiquetas cuidadosamente seleccionadas para maridar con cada platillo.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🌅</div>
+          <h3>Vista al mar</h3>
+          <p>Terraza con vista panorámica. Cenas románticas o reuniones de empresa, el escenario perfecto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nuestra cocina</span>
+        <h2>El menú</h2>
+        <p>Platos elaborados con pasión, técnica y los mejores productos del mar.</p>
+      </div>
+      <div class="menu-tabs">
+        <button class="tab active">Entradas</button>
+        <button class="tab">Principales</button>
+        <button class="tab">Postres</button>
+        <button class="tab">Bebidas</button>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-img" style="background:linear-gradient(135deg,#f5c07a,#e88040);display:flex;align-items:center;justify-content:center;font-size:1.8rem;">🦐</div>
+          <div class="menu-item-info">
+            <h4>Ceviche de camarones</h4>
+            <p>Camarones frescos, limón, cilantro, cebolla morada y tostadas</p>
+            <span class="menu-price">$280</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-img" style="background:linear-gradient(135deg,#c8e6c9,#66bb6a);display:flex;align-items:center;justify-content:center;font-size:1.8rem;">🥗</div>
+          <div class="menu-item-info">
+            <h4>Ensalada del huerto</h4>
+            <p>Mix de lechugas, tomates cherry, queso de cabra y vinagreta de miel</p>
+            <span class="menu-price">$180</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-img" style="background:linear-gradient(135deg,#ffccbc,#ff7043);display:flex;align-items:center;justify-content:center;font-size:1.8rem;">🐟</div>
+          <div class="menu-item-info">
+            <h4>Carpaccio de atún</h4>
+            <p>Atún aleta azul, aceite de trufa, alcaparras y parmesano</p>
+            <span class="menu-price">$350</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-img" style="background:linear-gradient(135deg,#fff9c4,#ffd54f);display:flex;align-items:center;justify-content:center;font-size:1.8rem;">🦪</div>
+          <div class="menu-item-info">
+            <h4>Ostiones al ajillo</h4>
+            <p>Ostiones frescos, mantequilla de ajo, perejil y pan artesanal</p>
+            <span class="menu-price">$420</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="galeria">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nuestra galería</span>
+        <h2>El ambiente</h2>
+        <p style="color:rgba(255,255,255,0.55)">Un espacio diseñado para que cada visita sea memorable.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:100%">🌊</div>
+        </div>
+        <div class="gallery-item"><div class="gallery-placeholder">🍽️</div></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🦞</div></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🌅</div></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🍷</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVA -->
+  <section class="reserva" id="reserva">
+    <div class="container">
+      <div class="reserva-inner">
+        <div class="reserva-text">
+          <span class="section-tag">Reservaciones</span>
+          <h2>Reserva tu mesa</h2>
+          <p>Asegura tu lugar en la experiencia Sabores del Mar. Disponible para grupos desde 2 hasta 20 personas.</p>
+          <div class="reserva-info">
+            <div class="reserva-info-item"><span>🕐</span><span>Lun–Vie: 1pm – 11pm | Sáb–Dom: 12pm – 12am</span></div>
+            <div class="reserva-info-item"><span>📍</span><span>Av. Costera 420, Zona Hotelera</span></div>
+            <div class="reserva-info-item"><span>📞</span><span>+52 744 123 4567</span></div>
+          </div>
+        </div>
+        <div class="reserva-form" id="contacto">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--brown);margin-bottom:24px;">Hacer reservación</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre" />
+            </div>
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="+52 ..." />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fecha</label>
+              <input type="date" />
+            </div>
+            <div class="form-group">
+              <label>Hora</label>
+              <select>
+                <option>1:00 PM</option>
+                <option>3:00 PM</option>
+                <option>5:00 PM</option>
+                <option>7:00 PM</option>
+                <option>9:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Número de personas</label>
+            <select>
+              <option>2 personas</option>
+              <option>3-4 personas</option>
+              <option>5-8 personas</option>
+              <option>9-12 personas</option>
+              <option>+12 personas (evento)</option>
+            </select>
+          </div>
+          <button onclick="this.textContent='✓ Reserva enviada';this.style.background='#34d399'" style="width:100%;padding:14px;border-radius:100px;background:var(--orange);color:white;font-size:0.95rem;font-weight:600;border:none;cursor:pointer;transition:.2s;margin-top:8px;">Confirmar reserva</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Sabores del Mar</div>
+        <p>© 2024 Sabores del Mar · Todos los derechos reservados</p>
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">TripAdvisor</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="../../index.html" class="back-link">← Volver al portafolio</a>
+
+  <script>
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

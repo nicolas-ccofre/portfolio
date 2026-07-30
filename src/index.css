@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #fafcff;
+  --color-surface: #ffffff;
+  --color-border: rgba(60, 105, 160, 0.15);
+  --color-text: #1c2438;
+  --color-text-muted: #6878a0;
+  --color-primary: #4a7ab2;
+  --color-primary-light: #6e9ec8;
+  --color-accent: #7888c4;
+  --color-green: #5a8c7a;
+  --color-orange: #c87858;
+
+  --radius-card: 18px;
+  --radius-field: 12px;
+
+  --shadow-brand: 0 4px 36px rgba(55, 100, 158, 0.12);
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+
+  /* Old site is desktop-first with breakpoints at 900px/600px; Tailwind's
+     sm:/md: are mobile-first, so we repoint them to the same pixel values
+     rather than porting the max-width direction. */
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 900px;
+
+  --animate-bounce-arrow: bounce-arrow 2.4s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.4s ease forwards;
+  --animate-hero-down: hero-down 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s both;
+  --animate-hero-left: hero-left 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 0.45s both;
+  --animate-hero-right: hero-right 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 0.75s both;
+  --animate-hero-up: hero-up 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) 1.05s both;
+}
+
+@keyframes bounce-arrow {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(7px);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-down {
+  from {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hero-left {
+  from {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes hero-right {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes hero-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background: linear-gradient(
+      180deg,
+      #fafcff 0%,
+      #f0f5fd 15%,
+      #e8f0fb 30%,
+      #dde8f8 48%,
+      #d5e2f6 63%,
+      #cddaf4 78%,
+      #d8e5f8 100%
+    );
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    line-height: 1.15;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+  }
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  em {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+}
